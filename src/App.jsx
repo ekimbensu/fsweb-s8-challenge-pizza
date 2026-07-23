@@ -6,12 +6,34 @@ import Success from './components/Success'
 
 export default function App() {
   const [page, setPage] = useState("home")
+  const [siparisOzeti, setSiparisOzeti] = useState(null)
+
+  let gösterilecekSayfa
+
+  if (page === "home") {
+    gösterilecekSayfa = (
+      <Home formGit={() => setPage("form")} />
+    )
+  }
+
+  if (page === "form") {
+    gösterilecekSayfa = (
+      <OrderForm
+        successGit={(ozet) => {
+          setSiparisOzeti(ozet)
+          setPage("success")
+        }}
+      />
+    )
+  }
+
+  if (page === "success") {
+    gösterilecekSayfa = <Success siparisOzeti={siparisOzeti} />
+  }
 
   return (
     <div>
-      {page === "home" && <Home formGit={() => setPage("form")} />}
-      {page === "form" && <OrderForm successGit={() => setPage("success")} />}
-      {page === "success" && <Success />}
+      {gösterilecekSayfa}
     </div>
   )
 }

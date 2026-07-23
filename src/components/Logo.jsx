@@ -1,3 +1,5 @@
+import logoImg from '../../images/iteration-1-images/logo.svg'
+
 export default function Logo() {
-  return <h1 className="logo">Teknolojik Yemekler</h1>
+  return <img src={logoImg} alt="Teknolojik Yemekler logosu" className="logo" />
 }
